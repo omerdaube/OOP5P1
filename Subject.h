@@ -39,16 +39,17 @@ public:
         }
         throw ObserverUnknownToSubject();
     }
-    Subject& operator+=(Observer<T>& observer){
+    Subject<T>& operator+=(Observer<T>& observer){
         addObserver(observer);
         return *this;
     }
-    Subject& operator-=(Observer<T>& observer){
+    Subject<T>& operator-=(Observer<T>& observer){
         removeObserver(observer);
         return *this;
     }
-    void operator()(const T& t){
+    Subject<T>& operator()(const T& t){
         notify(t);
+        return *this;
     }
 };
 #endif //OOP5P1_SUBJECT_H
